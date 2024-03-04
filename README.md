@@ -1,17 +1,20 @@
-# Uppgift X - Beskrivande titel
+# Uppgift 6 - Ordfrekvensanalys med funktionen `wordfreq()`
 
 ## <a name='Syfte'></a>Syfte
 
-Vad denna uppgift lär ut.
+## <a name='Syfte-1'></a>Syfte
+
+Syftet med denna uppgift är att utveckla studenternas förmåga att använda
+dictionaries för att analysera och bearbeta textdata. Genom att skapa en
+funktion som räknar ordens frekvens i en given text, övas strängmanipulation,
+vilket är en central komponent i programmering och dataanalys.
 
 <!-- vscode-markdown-toc -->
 
 - [Syfte](#Syfte)
+- [Syfte](#Syfte-1)
 - [Förberedelser](#Frberedelser)
 - [Beskrivning](#Beskrivning)
-  - [Del 1](#Del1)
-  - [Del 2](#Del2)
-- [Beskrivning](#Beskrivning-1)
   - [Detaljer](#Detaljer)
     - [Skapa en funktion](#Skapaenfunktion)
     - [Tips](#Tips)
@@ -27,60 +30,65 @@ Vad denna uppgift lär ut.
 
 ## <a name='Frberedelser'></a>Förberedelser
 
-- Nödvändiga förberedelsesteg.
+Innan du börjar med uppgiften, se till att du är bekväm med följande koncept:
+
+- Grundläggande datatyper i Python (strängar, listor, dictionaries)
+- Loopar (`for`-loopar och `while`-loopar)
+- Funktioner och hur man definierar dem
+- Strängmetoder, såsom `.split()`
 
 ## <a name='Beskrivning'></a>Beskrivning
 
-Denna uppgift fokuserar på att fördjupa förståelsen för de två viktigaste
-delarna av Pythons dokumentation.
-
-### <a name='Del1'></a>Del 1
-
-1. **If-satser**:
-
-Beskriv detaljerat...
-
-### <a name='Del2'></a>Del 2
-
-2. **while-loopar**:
-
-Beskriv detaljerat...
-
-## <a name='Beskrivning-1'></a>Beskrivning
-
-Skriv en funktion med namnet `calculate_area` som beräknar arean av en
-rektangel.
+Skriv en funktion `wordfreq` som tar en sträng som argument och returnerar en
+dictionary. Denna dictionary ska innehålla alla unika ord som finns i strängen
+som nycklar, och antalet gånger varje ord förekommer i strängen som värde.
 
 ### <a name='Detaljer'></a>Detaljer
 
 #### <a name='Skapaenfunktion'></a>Skapa en funktion
 
-- **Funktionsignatur:** `def calculate_area(length: float, width: float) ->
-float:`
-- **Vad den ska göra:** Funktionen tar två argument, `length` och `width`, och
-  returnerar rektangelns area.
-- **Vad den ska skriva ut:** Funktionen ska skriva ut "Rektangelns area är: X"
-  innan den returnerar, där X är den beräknade arean.
-- **Vad den ska returnera:** Funktionen ska returnera den beräknade arean som
-  ett flyttal.
+- **Funktionsignatur:** `def wordfreq(text: str) -> dict:`
+- **Vad den ska göra:** Funktionen tar en sträng text som argument och
+  returnerar en frekvensanalys för orden i strängen. För att separera ord i
+  strängen, anta att ord separeras av ett mellanslag.
+- **Vad den ska skriva ut:** Inget!
+- **Vad den ska returnera:** Ett dictionary där nycklarna är unika ord från
+  strängen och värdena är antalet gånger dessa ord förekommer. Om den givna
+  strängen är tom, ska funktionen returnera ett tomt dictionary.
 
 #### <a name='Tips'></a>Tips
 
-- Kom ihåg, arean av en rektangel beräknas som `längd * bredd`.
-- Se till att din funktion skriver ut det krävda meddelandet innan den
-  returnerar arean.
+- Använd `.split()`-metoden för att dela upp strängen i en lista av ord baserad
+  på mellanslag.
+- Loopa igenom listan av ord och använd ett dictionary för att hålla reda på
+  frekvensen av varje ord.
+- Var noga med att hantera fall där strängen är tom på ett korrekt sätt.
 
 #### <a name='Exempel'></a>Exempel
 
-1. **Anrop:** `calculate_area(5, 10)`
-   - **Förväntad utskrift:** "Rektangelns area är: 50"
-   - **Förväntat returvärde:** 50.0
-2. **Anrop:** `calculate_area(3.5, 2)`
-   - **Förväntad utskrift:** "Rektangelns area är: 7"
-   - **Förväntat returvärde:** 7.0
-3. **Anrop:** `calculate_area(7, 8)`
-   - **Förväntad utskrift:** "Rektangelns area är: 56"
-   - **Förväntat returvärde:** 56.0
+- **Anrop:** `wordfreq("hej hej på dig")`
+
+  - **Förväntad utskrift:** Inget!
+  - **Förväntat returvärde:** `{'hej': 2, 'på': 1, 'dig': 1}`
+
+- **Anrop:** `wordfreq("ett två tre två")`
+
+  - **Förväntad utskrift:** Inget!
+  - **Förväntat returvärde:** `{'ett': 1, 'två': 2, 'tre': 1}`
+
+- **Anrop:** `wordfreq("")`
+
+  - **Förväntad utskrift:** Inget!
+  - **Förväntat returvärde:** `{}`
+
+- **Anrop:** `wordfreq("python programmering python")`
+
+  - **Förväntad utskrift:** Inget!
+  - **Förväntat returvärde:** `{'python': 2, 'programmering': 1}`
+
+- **Anrop:** `wordfreq("test test test")`
+  - **Förväntad utskrift:** Inget!
+  - **Förväntat returvärde:** `{'test': 3}`
 
 ### <a name='Inlmningsinstruktioner'></a>Inlämningsinstruktioner
 
@@ -97,10 +105,6 @@ För att lämna in din uppgift, vänligen följ dessa steg:
 
    - Din lösning på uppgiften ska skrivas i `uppgift.py`. Det finns specifika
      instruktioner i `uppgift.py` om var du ska placera din källkod.
-
-<!-- 2. **Modifiera `uppgift.md`:**
-
-   - Din lösning på uppgiften ska skrivas i `uppgift.md`. Det finns en struktur att utöka med dina lösningar i `uppgift.md`. -->
 
 3. **Lämna in med Git:**
 

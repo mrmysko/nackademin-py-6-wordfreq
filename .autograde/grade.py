@@ -1,7 +1,6 @@
 import pytest
 
-
-fn_name = "stringt"
+fn_name = "wordfreq"
 
 
 class ImportDetailsError(Exception):
@@ -16,34 +15,24 @@ try:
     if not callable(fn):
         raise ImportDetailsError(f"Function {fn_name} is not callable")
 
-    # Alt #1:
-    #
-    if not fn.__code__.co_argcount == 2:
-        raise ImportDetailsError(f"Function {fn_name} must take exactly two arguments")
-
-    # Alt #2:
-    #
-    # Kontrollera att funktionen accepterar en variabel mängd argument
-    # Notera: Vi kan inte enkelt kontrollera antalet positionella argument för
-    # en funktion som accepterar *args, så vi hoppar över den kontrollen här.
+    # Kontrollerar att funktionen tar ett argument
+    if not fn.__code__.co_argcount == 1:
+        raise ImportDetailsError(f"Function {fn_name} must take exactly one argument")
 
     def test_exempel_1():
-        assert fn("Hej", "världen", sep=", ", end="!") == "Hej, världen!"
+        assert fn("hej hej på dig") == {"hej": 2, "på": 1, "dig": 1}
 
     def test_exempel_2():
-        assert fn("Python", "är", "kul") == "Python är kul\n"
+        assert fn("ett två tre två") == {"ett": 1, "två": 2, "tre": 1}
 
     def test_exempel_3():
-        assert fn("En", "två", "tre", sep=" - ") == "En - två - tre\n"
+        assert fn("") == {}
 
     def test_exempel_4():
-        assert fn("Slut", end=".") == "Slut."
+        assert fn("python programmering python") == {"python": 2, "programmering": 1}
 
     def test_exempel_5():
-        assert fn("Ett", "argument", sep="") == "Ettargument\n"
-
-    def test_exempel_6():
-        assert fn("Ensam") == "Ensam\n"
+        assert fn("test test test") == {"test": 3}
 
 except ImportDetailsError as e:
     pytest.fail(str(e))
